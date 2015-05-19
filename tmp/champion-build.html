@@ -1,0 +1,148 @@
+<div class="modal-dialog champion-build">
+	<div class="modal-content">
+
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-ng-click="cancel()">×</button>
+			<h4 class="modal-title displayfloat" data-ng-class="{ 'blue-text': !side, 'purple-text': side }">Champion Build</h4>
+			<div class="item-slots displayfloat">
+				<div class="champion-item-modal displayfloat" data-ng-class="{ 'no-item': item === false, 'item': item !== false }" data-ng-repeat="item in champion.items track by $index" >
+					<div data-ng-show="item === false" class="no-item-inner-modal"></div>
+					<img data-ng-hide="item === false" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-ng-src="{{item.image}}" data-ng-click="select( item )" data-ng-dblclick="champion.removeItem( $index )" data-ng-right-click="champion.removeItem( $index )">
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="modal-body">
+			<div class="item-search">
+				<input type="text" class="form-control" placeholder="Search items" data-ng-model="itemNameFilter.name">
+			</div>
+			<div class="item-attributes displayfloat">
+				
+				<ul class="list-attributes">
+					
+					<li class="title" data-ng-repeat-start="menuItem in menu">{{menuItem[ 0 ]}}</li>
+					<li class="attribute" data-ng-repeat-end data-ng-repeat="attribute in menuItem[ 2 ]" data-ng-show="menuItem.length == 3">
+						<span>{{attribute[ 0 ]}}</span>
+						<div class="attribute-checkbox dispayfloatright" data-ng-switch="attribute.length">
+							<input data-ng-switch-when="3" id="{{attribute[ 0 ]}}" type="checkbox" data-ng-model="itemTriggerFilter[ attribute[ 1 ] ]" name="" />
+							<input data-ng-switch-when="2" id="{{attribute[ 0 ]}}" type="checkbox" data-ng-model="itemTypeFilter[ menuItem[ 1 ] + ':' + attribute[ 1 ] ]" name="" />
+							<label class="inner" for="{{attribute[ 0 ]}}"></label>
+						</div>
+					</li>
+					
+				</ul>
+				
+			</div>
+			<div class="item-side displayfloat">
+				
+				<div data-ng-hide="items.length != 0">Loading items...</div>
+				
+				<div class="item-list ">
+					<img class="item-icon img-thumbnail animate-repeat" ng-repeat="item in items | filter:itemNameFilter | containsMenu:itemTypeFilter | orderBy:[ 'buy', 'name' ] | containsTriggerType:itemTriggerFilter" data-ng-click="select( item )" data-ng-dblclick="champion.addItem( item )" data-ng-right-click="champion.addItem( item )" data-ng-src="{{item.image}}" data-tooltip="{{item.name}}" />
+				</div>
+				<div class="item-relations" data-ng-show="selected">
+					<div data-ng-show="selected.caption" style="width: 350px; font-style: italic; text-align: center;">{{selected.caption}}</div>
+					<div class="full-items tcenter">
+						<img class="item-icon img-thumbnail" ng-repeat="item in builds" data-ng-click="select( item )" data-ng-dblclick="champion.addItem( item )" data-ng-right-click="champion.addItem( item )" data-ng-src="{{item.image}}" data-tooltip="{{item.name}}" />
+					</div>
+					<div class="item-breakdown">
+						<div class="selected-item tcenter">
+							<img class="item-icon img-thumbnail" data-ng-src="{{selected.image}}" data-tooltip="{{item.name}}" data-ng-dblclick="champion.addItem( selected )" data-ng-right-click="champion.addItem( selected )" />
+						</div>
+						<div class="child-item tcenter">
+							<img class="item-icon img-thumbnail" ng-repeat="item in recipe" data-ng-click="select( item )" data-ng-dblclick="champion.addItem( item )" data-ng-right-click="champion.addItem( item )" data-ng-src="{{item.image}}" data-tooltip="{{item.name}}" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="item-champion-stats displayfloat">
+				<table class="table table-condensed">
+					<tr>
+						<th class="tcenter" colspan="2">Statistics</th>
+					</tr>
+					<tr data-highlight-on-change="{{champion.stats.AD}}" data-ng-class="{ green: champion.stats.AD !== champion.stats.ADBase }">
+						<td>Attack Damage:</td>
+						<td class="tcenter" data-tooltip="+{{ champion.stats.AD - champion.stats.ADBase | number:0 }}">{{champion.stats.AD|number:0}}</td>
+					</tr>
+					<tr data-highlight-on-change="{{champion.stats.AS}}" data-ng-class="{ green: champion.stats.AS !== champion.stats.ASBase }">
+						<td>Attack Speed:</td>
+						<td class="tcenter" data-tooltip="+{{ ( champion.stats.AS / champion.stats.ASBase - 1 ) * 100 | number:0 }}% / {{ champion.stats.AS - champion.stats.ASBase | number: 3 }}">{{champion.stats.AS|number:3}}</td>
+					</tr>
+					<tr data-highlight-on-change="{{champion.stats.critChance}}" data-ng-class="{ green: champion.stats.critChance !== 0 }">
+						<td>Critical Chance:</td>
+						<td class="tcenter">{{champion.stats.critChance*100|number:0}}%</td>
+					</tr>
+					<tr data-highlight-on-change="{{champion.stats.critDamage}}" data-ng-class="{ green: champion.stats.critDamage !== 2 }">
+						<td>Critical Damage:</td>
+						<td class="tcenter">{{champion.stats.critDamage*100|number:0}}%</td>
+					</tr>
+					<tr data-highlight-on-change="{{champion.stats.armorPenFlat}}{{champion.stats.armorPenPerc}}" data-ng-class="{ green: champion.stats.armorPenFlat !== 0 || champion.stats.armorPenPerc !== 0 }">
+						<td>Armor Penetration:</td>
+						<td class="tcenter">{{champion.stats.armorPenFlat|number:0}} / {{champion.stats.armorPenPerc*100|number:0}}%</td>
+					</tr>		
+					<tr data-highlight-on-change="{{champion.stats.lifeSteal}}" data-ng-class="{ green: champion.stats.lifeSteal !== 0 }">
+						<td>Lifesteal:</td>
+						<td class="tcenter">{{champion.stats.lifeSteal*100|number:0}}%</td>
+					</tr>
+					<tr data-highlight-on-change="{{champion.stats.healthMax}}" data-ng-class="{ green: champion.stats.healthMax !== champion.stats.healthMaxBase }">
+						<td>Maximum Health:</td>
+						<td class="tcenter" data-tooltip="+{{ champion.stats.healthMax - champion.stats.healthMaxBase | number:0 }}">{{champion.stats.healthMax|number:0}}</td>
+					</tr>
+					<tr data-highlight-on-change="{{champion.stats.healthRegen}}" data-ng-class="{ green: champion.stats.healthRegen !== champion.stats.healthRegenBase }">
+						<td>Health Regen Per 5:</td>
+						<td class="tcenter" data-tooltip="+{{ champion.stats.healthRegen - champion.stats.healthRegenBase | number:0 }}">{{champion.stats.healthRegen|number:0}}</td>
+					</tr>
+					<tr data-highlight-on-change="{{champion.stats.armor}}" data-ng-class="{ green: champion.stats.armor !== champion.stats.armorBase }">
+						<td>Armor:</td>
+						<td class="tcenter" data-tooltip="+{{ champion.stats.armor - champion.stats.armorBase | number:0 }}">{{champion.stats.armor|number:0}}</td>
+					</tr>	
+					<tr data-highlight-on-change="{{champion.stats.MR}}" data-ng-class="{ green: champion.stats.MR !== champion.stats.MRBase }">
+						<td>Magic Resistance:</td>
+						<td class="tcenter" data-tooltip="+{{ champion.stats.MR - champion.stats.MRBase | number:0 }}">{{champion.stats.MR|number:0}}</td>
+					</tr>
+					<tr data-highlight-on-change="{{champion.stats.AP}}" data-ng-class="{ green: champion.stats.AP !== 0 }">
+						<td>Ability Power:</td>
+						<td class="tcenter">{{champion.stats.AP|number:0}}</td>
+					</tr>
+					<tr data-highlight-on-change="{{champion.stats.manaMax}}" data-ng-class="{ green: champion.stats.manaMax !== champion.stats.manaMaxBase }">
+						<td>Maxumum Mana:</td>
+						<td class="tcenter" data-tooltip="+{{ champion.stats.manaMax - champion.stats.manaMaxBase | number:0 }}">{{champion.stats.manaMax|number:0}}</td>
+					</tr>	
+					<tr data-highlight-on-change="{{champion.stats.manaRegen}}" data-ng-class="{ green: champion.stats.manaRegen !== champion.stats.manaRegenBase }">
+						<td>Mana Regen Per 5:</td>
+						<td class="tcenter" data-tooltip="+{{ champion.stats.manaRegen - champion.stats.manaRegenBase | number:0 }}">{{champion.stats.manaRegen|number:0}}</td>
+					</tr>		
+					<tr data-highlight-on-change="{{champion.stats.magicPenFlat}}{{champion.stats.magicPenPerc}}" data-ng-class="{ green: champion.stats.magicPenFlat !== 0 || champion.stats.magicPenPerc !== 0 }">
+						<td>Magic Penetration:</td>
+						<td class="tcenter">{{champion.stats.magicPenFlat|number:0}} / {{champion.stats.magicPenPerc*100|number:0}}%</td>
+					</tr>	
+					<tr data-highlight-on-change="{{champion.stats.CDR}}" data-ng-class="{ green: champion.stats.CDR !== 0 }">
+						<td>Cooldown Reduction:</td>
+						<td class="tcenter">{{champion.stats.CDR*100|number:0}}%</td>
+					</tr>	
+					<tr data-highlight-on-change="{{champion.stats.spellVamp}}" data-ng-class="{ green: champion.stats.spellVamp !== 0 }">
+						<td>Spellvamp:</td>
+						<td class="tcenter">{{champion.stats.spellVamp*100|number:0}}%</td>
+					</tr>		
+					<tr data-highlight-on-change="{{champion.stats.MS}}" data-ng-class="{ green: champion.stats.MS !== champion.stats.MSBase }">
+						<td>Movement Speed:</td>
+						<td class="tcenter" data-tooltip="+{{ ( champion.stats.MS - champion.stats.MSBase ) / champion.stats.MSBase * 100 | number:0 }}% / {{ champion.stats.MS - champion.stats.MSBase | number:0 }}">{{champion.stats.MS|number:0}}</td>
+					</tr>		
+					<tr data-highlight-on-change="{{champion.stats.tenacity}}" data-ng-class="{ green: champion.stats.tenacity !== 0 }">
+						<td>Tenacity:</td>
+						<td class="tcenter">{{champion.stats.tenacity*100|number:0}}%</td>
+					</tr>					
+				</table>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="modal-footer">
+			
+			<div style="width: 80px; float: left; margin-right: 10px;"><b>Cost:</b> {{cost()}}</div><div style="float: left;" data-ng-click="manageBudget()"><b>Budget:</b> {{budget}}</div>
+			
+			<button type="button" class="btn btn-default" data-ng-click="cancel()">Close</button>
+			<button type="button" class="btn btn-danger" data-ng-click="champion.resetItems()">Reset</button>
+		
+		</div>
+	</div><!-- /.modal-content -->
+</div>

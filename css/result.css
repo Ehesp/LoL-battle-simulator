@@ -1,0 +1,4 @@
+body { background: #222222; padding: 20px; color: #ffffff; }
+header { width: 100px; height: 130px;  z-index: 999; position: fixed; top: 1em; right: 2.8em; overflow: hidden; font-family: 'Open Sans', sans-serif;  }
+#logo { width: 100px; display: block; background: url('../img/result-logo-sprite.png') no-repeat 10px 0; width: 79px; height: 96px; }
+header:hover #logo { background-position: 10px -96px; }

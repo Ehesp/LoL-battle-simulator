@@ -1,0 +1,378 @@
+/*!
+ * LoL Battle Simulator
+ * CSS
+ *  
+ * Pablo Kebees & Elliot Hesp
+ *
+ */
+
+@import url('misc.css');
+@import url('sly.css');
+@import url('jquery.qtip.css');
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300); /* font-family: 'Open Sans', sans-serif; */
+
+/* General Declarations
+************************/
+
+html, body { height: 100%; }
+body { background: #f4f4f4;}
+body, h1, h2, h3, h4, h5, h6, h7 { font-family: 'Open Sans', sans-serif; }
+a, a:hover, a:visited { color: #ffffff; text-decoration: underline; }
+
+#wrap { min-height: 100%; }
+.block { display: block; }
+.displayfloat { float: left; display: inline; }
+.displayfloatright { float: right; display: inline; }
+.displayfloattable { float: left; display: inline-table; }
+.displayfloatrighttable { float: right; display: inline-table; }
+.third { width: 350px; }
+.bcenter { margin: 0 auto; }
+.tcenter { text-align: center; }
+.tleft { text-align: left; }
+.tright { text-align: right; }
+.full-width { width: 1050px; }
+.progress-bar-difficulty { background-color: #411a52 }
+.strikethrough { text-decoration: line-through; }
+
+.blue-text { text-shadow: 0px 0px 1px #0066ff; filter: dropshadow(color=#0066ff, offx=0, offy=0); }
+.purple-text { text-shadow: 0px 0px 1px #8400ff; filter: dropshadow(color=#8400ff, offx=0, offy=0); }
+
+.battle-console .blue { color: #0066ff; }
+.battle-console .purple { color: #8400ff; }
+.battle-console .system { color: red; }
+
+.no-highlight { -webkit-user-select: none; -moz-user-select: none; -khtml-user-select: none; -ms-user-select: none; }
+.no-highlight-text { -webkit-user-select: text; -moz-user-select: text; -khtml-user-select: text; -ms-user-select: text; }
+
+/* Bootstrap & Angular Hack Fixes
+**********************************/
+.modal { display: block; overflow-y: auto; }
+
+div.cst-tt-content { display: none; }
+
+/* Header / Logo Area
+**********************/
+header { width: 100%; height: 231px; border-top: 6px solid #000; background: url('../img/header-1.jpg') center no-repeat #343b4a; }
+#header-content { width: 900px; height: 200px; margin: 35px auto 0 auto; }
+img#logo { margin: 0 auto; }
+#steps { margin-top: 26px; text-shadow: 2px 2px #000; }
+.step { width: 300px; float: left; display: inline; font-size: 40px; color: #ffffff; }
+i.step-icons { display: inline-block; line-height: 15px; }
+.step span { font-size: 23px; }
+
+/* Main Battle Sim Area
+************************/
+	
+	/* Champion Select
+	*******************/
+	section#champion-select { padding-top: 20px; border-top: 4px solid #e5e5e5; }
+	.custom-border { /* CSS Arrow within /css/misc.css */ padding-bottom: 20px; border-bottom: 1px solid #cccccc; }
+	#search { width: 100%; height: 50px; }
+	
+	/* Battle Area
+	***************/
+	section#battle-area { margin: 10px 0 50px 0; }
+	
+		/* Champions, Avatar, Statistics
+		*********************************/
+		section h2 { margin: 0; }
+		.champion-area { width: 300px; }
+	
+		#blue-champion .champion-statistics, #purple-champion .champion-statistics { 	padding: 0 10px 0 10px; }
+		
+		.champion-stats { width: inherit; margin-top: 6px; }	
+		.champion-stats .progress { margin-bottom: 5px; background-color: #dfdfdf; }
+		.champion-stats .progress:hover { cursor:help; }
+		.champion-stats .champion-avatar { position: relative; width: 100px; height: 100px; }
+		.champion-stats .champion-avatar img.champion-low { animation:low 2s infinite; -webkit-animation:low 2s infinite; }
+		@keyframes low {
+			50% 	{ background-color: red; }
+			100% 	{ background-color: transparent; }
+		}
+		@-webkit-keyframes low {
+			50% 	{ background-color: red; }
+			100% 	{ background-color: transparent; }
+		}
+		.champion-stats .dead-overlay.champion-dead { background: red; position: absolute; top: 0; left: 0; width: 90%; height: 90%; opacity: 0.3; margin: 5px; }
+		.champion-stats .champion-statistics { width: 200px; }
+		
+			/* Place Holder (?) */
+			.champion-placeholder { margin-top: 110px; }
+			.champion-placeholder i { font-size: 300px; color: #f4f4f4; }
+			#blue-champion-placeholder i { margin-right: 35px; text-shadow: 0px 0px 8px #0066ff; filter: dropshadow(color=#0066ff, offx=0, offy=0); }
+			#purple-champion-placeholder i { text-shadow: 0px 0px 8px #8400ff; filter: dropshadow(color=#8400ff, offx=0, offy=0); }
+			#purple-champion-placeholder i, #blue-champion-placeholder i { opacity: 0.3; }
+		
+		/* Champions Level Slider
+		**************************/
+		.champion-level { margin-top: 8px; }
+		input.champion-level { width: 270px; }
+		#blue-champion .champion-level .slider { margin-left: 10px; }
+		#purple-champion .champion-level .slider { margin-right: 10px; }
+		#purple-champion  .progress-bar { float: right; }
+		#purple-champion .progress.active .progress-bar { /* Reverse Progress Bar Animation */
+			-webkit-animation-direction: reverse;
+			-moz-animation-direction: reverse;
+			-ms-animation-direction: reverse;
+			-o-animation-direction: reverse;
+			animation-direction: reverse;
+		}
+		
+		/* Champions Skills/Abilities
+		******************************/
+		.champion-skills { margin-top: 10px; height: 80px; }		
+		#blue-champion .champion-skills .skill { width: 50px; margin: 0 6px 0 2px; }
+		#purple-champion .champion-skills .skill { width: 50px; margin: 0 2px 0 6px; }
+		.champion-skills  img{ margin: 10px 2px 0 2px; position: absolute; border-radius: 8px; }
+		.champion-skills .skill-passive img { width: 35px; height: 35px; position: relative; top: 10px; left: 10px; }
+		.champion-skills  button { width: 26px; height: 26px; position: relative; z-index: 1; top: -1px; left: 32px; }
+		.champion-skills .skill-passive button { top: -39px; left: 29px; }
+		.champion-skills i { position: relative; top: -4px; left: -6px; }
+		.champion-skills .skill-key { width: 50px; height: 8px; text-align: center; }
+		.champion-skills .skill-level { margin: 35px 0 0 4px; width: 60px; }
+		.champion-skills .skill-level i { font-size: 9px; letter-spacing: 1px; }	
+		.champion-skills .skill-level i:hover { cursor:pointer; cursor:hand; }
+		.champion-skills .skill-level .icon-disabled { opacity: 0.3; }
+		.champion-skills .skill-level .icon-invalid { color: #d9534f; }
+		.champion-skills img:hover { cursor:pointer; cursor:hand; }
+		
+		/* Champions Buffs, Runes & Masteries
+		*************************************/
+		.champion-utility { margin: 10px; }
+		.champion-utility img:hover { cursor:pointer; cursor:hand; }
+		
+		.champion-utility .champion-buffs img { width: 30px; height: 30px; border-radius: 6px; margin-right: 5px; }
+		.champion-utility .champion-buffs img.disabled { opacity: 0.4; }
+		
+		.champion-utility .champion-runes-masteries img.rune,
+		.champion-utility .champion-runes-masteries img.mastery { width: 30px; }
+			
+			/* Rune Modal */
+			.modal-dialog.runes { width: 1000px; }
+			.modal-dialog.runes .rune-holder .rune-types { width: 130px; }
+			
+			.modal-dialog .rune-add { width: 10px; height: 40px; background-color: #E5B85D; display: inline-block; border-left: 1px #F3D29C solid; }
+			.modal-dialog .rune-add:hover { background-color: #EABD6C; }
+			.modal-dialog .rune-add:first-of-type { border-left: none; }
+			
+			.modal-dialog .rune-menu { background-color: #F3D29C; border-top: 1px #A05A29 solid; padding: 5px; }
+			
+			.modal-dialog.runes .rune-holder .rune-page { width: 658px; height: 436px; background: url('../img/rune-background.jpg') no-repeat; border: 1px solid #b9b9b9; position: relative; }
+			
+			.modal-dialog.runes .rune-holder .rune-page .rune { position: absolute; background-size: cover; }
+			.modal-dialog.runes .rune-holder .rune-page .quint.empty { background: url('../img/runepage/quint-empty.png') no-repeat; height: 90px; }
+			.modal-dialog.runes .rune-holder .rune-page .mark.empty { background: url('../img/runepage/mark-empty.png') no-repeat; }
+			.modal-dialog.runes .rune-holder .rune-page .seal.empty { background: url('../img/runepage/seal-empty.png') no-repeat; }
+			.modal-dialog.runes .rune-holder .rune-page .glyph.empty { background: url('../img/runepage/glyph-empty.png') no-repeat; }
+			
+			.modal-dialog.runes .rune-holder .rune-page .quint { width: 100px; height: 100px; }
+			.modal-dialog.runes .rune-holder .rune-page .mark { width: 49px; height: 56px; }
+			.modal-dialog.runes .rune-holder .rune-page .seal { width: 49px; height: 56px; }
+			.modal-dialog.runes .rune-holder .rune-page .glyph { width: 49px; height: 56px; }
+			
+				/* Quints */
+				.modal-dialog.runes .rune-holder .rune-page .quint-1 { top: 36px; left: 28px; }
+				.modal-dialog.runes .rune-holder .rune-page .quint-2 { top: 221px; left: 178px; }
+				.modal-dialog.runes .rune-holder .rune-page .quint-3 { top: 164px; left: 400px; }
+				
+				/* Marks */
+				.modal-dialog.runes .rune-holder .rune-page .mark-1 { top: 370px; left: 24px; }
+				.modal-dialog.runes .rune-holder .rune-page .mark-2 { top: 370px; left: 86px; }
+				.modal-dialog.runes .rune-holder .rune-page .mark-3 { top: 370px; left: 153px; }
+				.modal-dialog.runes .rune-holder .rune-page .mark-4 { top: 312px; left: 8px; }
+				.modal-dialog.runes .rune-holder .rune-page .mark-5 { top: 312px; left: 68px; }
+				.modal-dialog.runes .rune-holder .rune-page .mark-6 { top: 313px; left: 129px; }
+				.modal-dialog.runes .rune-holder .rune-page .mark-7 { top: 259px; left: 29px; }
+				.modal-dialog.runes .rune-holder .rune-page .mark-8 { top: 259px; left: 108px; }
+				.modal-dialog.runes .rune-holder .rune-page .mark-9 { top: 215px; left: 70px; }
+				
+				/* Seal */
+				.modal-dialog.runes .rune-holder .rune-page .seal-1 { top: 174px; left: 26px; }
+				.modal-dialog.runes .rune-holder .rune-page .seal-2 { top: 174px; left: 114px; }
+				.modal-dialog.runes .rune-holder .rune-page .seal-3 { top: 133px; left: 72px; }
+				.modal-dialog.runes .rune-holder .rune-page .seal-4 { top: 112px; left: 128px; }
+				.modal-dialog.runes .rune-holder .rune-page .seal-5 { top: 66px; left: 161px; }
+				.modal-dialog.runes .rune-holder .rune-page .seal-6 { top: 43px; left: 217px; }
+				.modal-dialog.runes .rune-holder .rune-page .seal-7 { top: 24px; left: 275px; }
+				.modal-dialog.runes .rune-holder .rune-page .seal-8 { top: 5px; left: 343px; }
+				.modal-dialog.runes .rune-holder .rune-page .seal-9 { top: 55px; left: 371px; }
+				
+				/* Glyph */
+				.modal-dialog.runes .rune-holder .rune-page .glyph-1 { top: 6px; left: 399px; }
+				.modal-dialog.runes .rune-holder .rune-page .glyph-2 { top: 53px; left: 431px; }
+				.modal-dialog.runes .rune-holder .rune-page .glyph-3 { top: 8px; left: 463px; }
+				.modal-dialog.runes .rune-holder .rune-page .glyph-4 { top: 91px; left: 475px; }
+				.modal-dialog.runes .rune-holder .rune-page .glyph-5 { top: 46px; left: 507px; }
+				.modal-dialog.runes .rune-holder .rune-page .glyph-6 { top: 6px; left: 550px; }
+				.modal-dialog.runes .rune-holder .rune-page .glyph-7 { top: 43px; left: 599px; }
+				.modal-dialog.runes .rune-holder .rune-page .glyph-8 { top: 81px; left: 555px; }
+				.modal-dialog.runes .rune-holder .rune-page .glyph-9 { top: 133px; left: 576px; }
+				
+			.modal-dialog.runes .rune-holder .rune-statistics { width: 200px; }
+				
+			/* Masteries */
+			.modal-dialog.masteries { width: 885px; }
+			.modal-dialog.masteries .modal-body { margin-bottom: 20px; }
+			.modal-dialog.masteries .mastery-holder .trees { width: 900px; }
+			.modal-dialog.masteries .mastery-holder .tree { width: 264px; height: 470px; border: 1px solid black; margin: 0 1px; position: relative; }
+			.modal-dialog.masteries .mastery-holder .tree .tree-reset { position: absolute; top: 423px; right: 10px; }
+			.modal-dialog.masteries .mastery-holder .tree .title { width: 264px; position: absolute; top: 489px; font-weight: bold; }
+			.modal-dialog.masteries .mastery-holder .mastery-info { margin: 0 0 10px 0; }
+			.modal-dialog.masteries .mastery-holder .points-remain { line-height: 40px; }
+			.modal-dialog.masteries .mastery-holder .indiv-points .points { height: 50px; }
+			.modal-dialog.masteries .mastery-holder .indiv-points .points:not(:last-child) { margin: 0 10px 0 0; }
+			.modal-dialog.masteries .mastery-holder .indiv-points .points:first-child { line-height: 37px; }
+			.modal-dialog.masteries .mastery-holder .indiv-points .points:last-child { line-height: 39px; }
+			.modal-dialog.masteries .mastery-holder .offensive,
+			.modal-dialog.masteries .mastery-holder .defensive,
+			.modal-dialog.masteries .mastery-holder .utility { border-radius: 5px; margin-top: 4px; margin-left: 9px; z-index:998; }
+			.modal-dialog.masteries .mastery-holder .offensive { background: url('../img/mastery-offensive.jpg') no-repeat; }
+			.modal-dialog.masteries .mastery-holder .defensive { background: url('../img/mastery-defensive.jpg') no-repeat; }
+			.modal-dialog.masteries .mastery-holder .utility { background: url('../img/mastery-utility.jpg') no-repeat;  }
+			.modal-dialog.masteries .mastery-holder .mastery-background { background: url('../img/background-mastery.png') no-repeat; width: 827px; height: 479px; position: absolute; margin-left: 0px; z-index: 1; border-radius: 5px; }
+			
+			.modal-dialog.masteries .mastery-holder .mastery { width: 55px; height: 60px; position: absolute; z-index: 999; }
+			.modal-dialog.masteries .mastery-holder .mastery.disabled { opacity: 0.4; }
+			.modal-dialog.masteries .mastery-holder .mastery img { border-radius: 4px; border: 2px solid gold; }
+			.modal-dialog.masteries .mastery-holder .mastery img:hover { cursor:pointer; cursor:hand; }
+			.modal-dialog.masteries .mastery-holder .mastery .points { width: 30px; font-size: 12px; position: relative; color: gold; background: #000; border-radius: 2px; border: 1px solid gold; top: -7px; left: 14px; }
+			
+			.modal-dialog.masteries .mastery-holder .mastery.x1 { left: 7px; }
+			.modal-dialog.masteries .mastery-holder .mastery.x2 { left: 70px; }
+			.modal-dialog.masteries .mastery-holder .mastery.x3 { left: 132px; }
+			.modal-dialog.masteries .mastery-holder .mastery.x4 { left: 196px; }
+			
+			.modal-dialog.masteries .mastery-holder .mastery.y1 { top: 10px; }
+			.modal-dialog.masteries .mastery-holder .mastery.y2 { top: 85px; }
+			.modal-dialog.masteries .mastery-holder .mastery.y3 { top: 160px; }
+			.modal-dialog.masteries .mastery-holder .mastery.y4 { top: 235px; }
+			.modal-dialog.masteries .mastery-holder .mastery.y5 { top: 315px; }
+			.modal-dialog.masteries .mastery-holder .mastery.y6 { top: 395px; }
+		
+		/* Champions Build Items
+		******************************/
+		.champion-build { margin-top: 15px; }
+		.champion-build .champion-items { width: 220px; height: 155px; }
+		.champion-build .build-options { width: 60px; height: 155px; margin-left: 12px; padding-top: 28px; line-height: 40px; }
+		.champion-build .build-options button.refresh { width: 41px; }
+		
+		.champion-build .champion-items .champion-item.no-item { width: 70px; height: 70px; display: inline-block; padding: 4px; margin: 0 0 0 3px; background-color: #ffffff; border: 1px solid #ddd; border-radius: 4px; -webkit-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
+		.champion-build .champion-items .champion-item.no-item .no-item-inner { width: 60px; height: 60px; background: #cccccc; }
+		.champion-build .champion-items .champion-item img { width: 70px; height: 70px; float: left; display: inline; margin-left: 3px; margin-bottom: 5px; }
+		
+			/* Champion Build Modal */
+			.modal-dialog.champion-build { width: 805px; }
+			.modal-dialog.champion-build .modal-header h4 { line-height: 50px;}
+			
+			.modal-dialog.champion-build .modal-header .item-slots img { width: 40px;  height: 40px; }
+			.modal-dialog.champion-build .modal-header .item-slots img:hover  { cursor:pointer; cursor:hand; }
+			
+			.modal-dialog.champion-build .modal-header .item-slots .champion-item-modal { width: 50px; height: 50px; padding: 4px; background: #ffffff; border: 1px solid #ddd; border-radius: 4px; -webkit-transition: all .2s ease-in-out; transition: all .2s ease-in-out; }
+			.modal-dialog.champion-build .modal-header .item-slots .champion-item-modal:first-child { margin: 0 0 0 20px; }
+			.modal-dialog.champion-build .modal-header .item-slots .champion-item-modal:not(:first-child) { margin: 0 0 0 10px; }
+			.modal-dialog.champion-build .modal-header .item-slots .champion-item-modal .no-item-inner-modal { width: 40px; height: 40px; background: #cccccc; }
+			
+			.modal-dialog.champion-build .modal-body .item-search { margin: 0 0 10px 0; width: 538px; }
+			
+			.modal-dialog.champion-build .modal-body .item-attributes { width: 150px; margin: 0 10px 0 0; }
+			.modal-dialog.champion-build .modal-body .item-attributes ul.list-attributes { list-style: none; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+			.modal-dialog.champion-build .modal-body .item-attributes ul.list-attributes li.title { padding: 3px; font-size: 15px; font-weight: bold; border-bottom: 1px solid #cccccc; }
+			.modal-dialog.champion-build .modal-body .item-attributes ul.list-attributes li.title:hover  { cursor:pointer; cursor:hand; }
+			.modal-dialog.champion-build .modal-body .item-attributes ul.list-attributes li.attribute { padding: 0 0 0 10px; font-size: 12px; }
+			/* TEMP LINE */.modal-dialog.champion-build .modal-body .item-attributes ul.list-attributes li input.list-checkbox { visibility: hidden; }
+			
+			/* Checkbox Styling within css/misc.css */
+			
+			.modal-dialog.champion-build .modal-body .item-list { padding: 5px 0 0 5px; height: 300px; width: 378px; 	overflow-y: scroll; }
+			.modal-dialog.champion-build .modal-body .item-list,
+			.modal-dialog.champion-build .modal-body .item-relations .full-items,
+			.modal-dialog.champion-build .modal-body .item-relations .item-breakdown { background: #f3f3f3; border: 1px solid #cccccc; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+			.modal-dialog.champion-build .modal-body .item-list img { width: 55px; height: 55px; margin-left: 2px; -webkit-border-radius: 13px; -moz-border-radius: 13px; border-radius: 13px; }
+			.modal-dialog.champion-build .modal-body .item-list img:hover	{ cursor:pointer; cursor:hand; }
+			
+			.modal-dialog.champion-build .modal-body .item-champion-stats { width: 185px; margin: -41px 0 0 15px;}
+			.modal-dialog.champion-build .modal-body .item-champion-stats table { font-family: Arial, Helvetica, sans-serif; font-size: 12px; }
+			.modal-dialog.champion-build .modal-body .item-champion-stats th:first-child { border-top: none; }
+			.modal-dialog.champion-build .modal-body .item-champion-stats tr.green { background: #d3ffd9; }
+			
+			.modal-dialog.champion-build .modal-body .item-relations .full-items { width: 378px; padding: 5px; margin: 10px 0; }
+			.modal-dialog.champion-build .modal-body .item-relations .full-items img { width: 60px; height: 60px; }
+			
+			.modal-dialog.champion-build .modal-body .item-relations .item-breakdown { width: 378px; padding: 5px;}
+			.modal-dialog.champion-build .modal-body .item-relations .item-breakdown img{ width: 60px; height: 60px;}
+			
+		
+		/* Champions Queue
+		******************************/
+		#purple-champion .champion-queue .queue-holder { text-align: left; float: right; }
+		.champion-queue .queue-holder { width: 220px; margin: 20px 0 0 35px; }
+		.champion-queue .queue-holder > span, .champion-queue .queue { background: #ffffff; }
+		.champion-queue .queue-holder > span i { position: relative; top: -1px; }
+		.champion-queue .queue { /* Mimic Input Box */
+			padding: 0 5px;
+			width: 215px;
+			height: 31px;
+			border: 1px solid #ccc;
+			overflow-x: hidden;
+			font-family: Arial, Helvetica, sans-serif;
+			-webkit-border-top-right-radius: 4px;
+			-webkit-border-bottom-right-radius: 4px;
+			-moz-border-radius-topright: 4px;
+			-moz-border-radius-bottomright: 4px;
+			border-top-right-radius: 4px;
+			border-bottom-right-radius: 4px;
+		}
+		.champion-queue .queue span { line-height: 26px; }
+		.champion-queue .queue span:hover { cursor: pointer; color: red; }
+		.champion-queue .auto-attack img { width: 29px; height: 30px; border: 1px solid #ccc; }
+		.champion-queue .auto-attack img:hover  { cursor:pointer; cursor:hand; }
+		.champion-queue span.clear  { position: absolute; display: block; top: 1px; right: 1px; width: 18px; height: 29px; background: url('../img/clear.jpg') no-repeat 0 6px white; cursor: pointer; border-top-right-radius: 4px; border-bottom-right-radius: 4px; }
+		
+		#purple-champion .champion-queue .auto-attack { margin-left: 10px; }
+		#purple-champion .champion-queue .queue-holder { margin: 0; }		
+		#purple-champion .champion-queue { margin-top: 20px; }
+		
+	/* Battle Log Area
+	******************/
+	.battlelog { width: 450px; margin-top: 39px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;  }
+	.battlelog-panel { height: 428px; }
+	
+		/* Top settings/buttons
+		******************************/
+		.battlelog-settings { width: inherit; height: 40px; }
+		.start-stop { width: 32px; }
+		#timer span, #FPS span, #timer input, #FPS input { background-color: #ffffff; }
+		#timer { width: 85px; }
+		#timer, #FPS > input:hover { cursor: default; }
+		#timer, #timer-reset, #FPS { margin: 0 0 0 10px; }
+		#FPS { width: 70px; }
+		
+		/* Panel Area
+		******************************/
+		.battle-log-stats, .battle-log-queue { width: 100%; }
+		.battle-log-stats { height: 273px; }
+		
+		table#statistics * { border: none; }
+		table#statistics .progress { margin-bottom: 0; background: #dfdfdf;}
+		table#statistics .progress-bar { background-image: url('../img/stats-lines-overlay.png'); }
+		table#statistics tr td.blue .progress-bar { float: right; }
+		/* Resource Type Colours */
+		table#statistics .progress-bar[data-resource-type="fury"] { background-color: #d9534f; }
+		table#statistics .progress-bar[data-resource-type="mana"] { background-color: #428bca; }
+		table#statistics .progress-bar[data-resource-type="energy"] { background-color: #f0ad4e; }
+		table#statistics .progress-bar[data-resource-type="shield"] { background-color: #9e9e9e; }
+		table#statistics .progress-bar[data-resource-type="none"] { background-color: #dfdfdf; }
+		
+		table#statistics div.sr-only { position: relative; width: 159px; height: 15px; top: -16px; 	color: #000; }
+		table#statistics tr td.blue, table#statistics tr td.purple  { width: 40%; }
+		
+		.battle-console { background: #cccccc; width: 100%; height: 120px; overflow-y: scroll; border: 1px solid #b9b9b9; }
+		.battle-console div { font-family:Courier; }
+		
+
+/* Footer
+************************/
+.footer { position: relative; margin-top: -46px; /* negative value of footer height */ height: 46px; clear:both; padding-top:8px; background: #3b3d49; color: #ffffff; border-top: 6px solid #e5e5e5; }
+.footer .sound-control { font-size: 23px; line-height: 0px; width: 50px; position: relative; top: -5px; }
+.footer .sound-control:hover { cursor:pointer; cursor:hand; }
+.footer-container { width: 700px; }

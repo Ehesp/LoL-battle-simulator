@@ -1,0 +1,57 @@
+<div class="modal-dialog masteries">
+	<div class="modal-content">
+
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-ng-click="cancel()">×</button>
+			<h4 class="modal-title displayfloat" data-ng-class="{ 'blue-text': !side, 'purple-text': side }">Masteries</h4>
+			<div class="clearfix"></div>
+		</div>
+		<div class="modal-body">
+		<div class="clearfix"></div>
+			<div class="mastery-holder">
+				<div class="mastery-info">
+									
+					<div class="points-remain displayfloat">
+						<b>Points Remaining: {{ maxPoints - points() }}</b>
+					</div>
+					<br/><br/>
+					<select data-ng-model="masterySeason" data-ng-change="setMasterySeason( masterySeason )" data-ng-options="masterySeasons.indexOf( v ) as 'Season ' + v for v in masterySeasons"></select>
+					
+					<div class="indiv-points displayfloatright">
+						<div class="points displayfloat">
+							<img data-placement="top" data-tooltip="Offensive" src="http://images4.wikia.nocookie.net/__cb20091125013240/leagueoflegends/images/f/f6/Offense_Mastery.png" alt="Offensive" />
+							<b>{{ points( trees[ 0 ] ) }}</b>
+						</div>
+						<div class="points displayfloat">
+							<img data-placement="top" data-tooltip="Defensive" src="http://images2.wikia.nocookie.net/__cb20091127191418/leagueoflegends/images/2/28/Defense_Mastery.png" alt="Defensive" />
+							<b>{{ points( trees[ 1 ] ) }}</b>
+						</div>
+						<div class="points displayfloat">
+							<img data-placement="top" data-tooltip="Utility" src="http://images2.wikia.nocookie.net/__cb20091127191933/leagueoflegends/images/2/2c/Utility_Mastery_%28tree%29.png" alt="Utility" />
+							<b>{{ points( trees[ 2 ] ) }}</b>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+					<div data-ng-repeat="tree in trees" class="tree {{treeNames[ $index ]}} displayfloat">
+						<div class="title tcenter">{{ capitalize( treeNames[ $index ] ) }}: {{ points( tree ) }}</div>
+						<button type="button" class="tree-reset btn btn-default" data-ng-click="reset( $index )"><i class="icon-retweet"></i></button>
+						<div data-tooltip="{{mastery.description}}" data-tooltip-popup-delay="200" data-ng-repeat="mastery in tree" class="mastery x{{mastery.x}} y{{mastery.y}}" data-ng-class="{ disabled: disabled( tree, mastery ) && mastery.points == 0 }" data-ng-click="increase( tree, mastery )" data-ng-right-click="decrease( tree, mastery )">
+							<img data-ng-src="img/mastery/s{{ masterySeasons[ masterySeason ] }}/{{ mastery.image }}" width="54px" height="54px" alt="{{ mastery.name }}" class="html-tooltip" />
+							<div class="points tcenter">{{mastery.points}}/{{mastery.max}}</div>
+						</div>
+					</div>
+				<div class="mastery-background"></div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-ng-click="ok()">Save</button>
+			<button type="button" class="btn btn-danger" data-ng-click="loadMasteries()">Revert</button>
+			<button type="button" class="btn btn-danger" data-ng-click="reset()">Reset</button>
+			<button type="button" class="btn btn-default" data-ng-click="cancel()">Close</button>
+		</div>
+	</div><!-- /.modal-content -->
+</div>

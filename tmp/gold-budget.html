@@ -1,0 +1,24 @@
+<div class="modal-dialog champion-build">
+	<div class="modal-content">
+
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-ng-click="cancel()">×</button>
+			<h4 class="modal-title displayfloat blue-text">Gold Budget</h4>
+		</div>
+		<div class="modal-body">
+			<br/>
+			Gametime: <input type="text" style="text-align: right;" data-ng-model="minutes" data-ng-change="update()" size="2" />:<input style="text-align: right;" size="2" type="text" data-ng-model="seconds" data-ng-change="update()" />
+			<br/><br/>
+			Starting gold: <input type="text" style="text-align: right;" data-ng-model="starting" data-ng-change="update()" size="3" />
+			<hr/>
+			Starting gold: <input type="text" style="text-align: right;" data-ng-model="total" data-ng-change="update()" size="5" />
+			
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-ng-click="cancel()">Close</button>
+			<button type="button" class="btn btn-danger" data-ng-click="champion.resetItems()">Reset</button>
+			<button type="button" class="btn btn-primary" data-ng-click="ok()">Pablos love button</button>
+		
+		</div>
+	</div><!-- /.modal-content -->
+</div>

@@ -1,0 +1,39 @@
+<div class="modal-dialog champion-build">
+	<div class="modal-content">
+
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" data-ng-click="cancel()">×</button>
+		<h4 class="modal-title displayfloat" data-ng-class="{ 'blue-text': !side, 'purple-text': side }">Champion Build</h4>
+	</div>
+	<div class="modal-body">
+		
+		<div style="float: right; width: 300px; white-space:nowrap; overflow-x: auto; padding: 10px;">
+			
+			<a style="color: gray; margin-right: 10px;" data-ng-repeat="site in sites" data-ng-click="selectSite( site )" data-ng-bind="site.title"></a>
+			
+			<div data-ng-show="champion.guides === false">Loading guides...</div>
+			<div style="color: darkblue;" data-ng-click="loadGuide( guide )" data-ng-hide="champion.guides === false" data-ng-repeat="guide in champion.guides[ selected.name ].slice( 0, 5 )">{{guide.title}}</div>
+		
+		</div>
+		
+		<br/>
+		
+		Copy this data string to share your build or save it for later.<br/>
+		<input type="text" data-ng-model="dataString" size="50" readonly />
+		
+		<hr/>
+		
+		Enter a different data string to load a build of your choice.<br/>
+		<input type="text" data-ng-model="newString" size="45" />
+		<button type="button" class="refresh btn btn-default" data-placement="top" title="" data-tooltip="Load Build" ng-click="loadDataString( newString )">
+			<i class="icon-folder-open"></i>
+		</button>
+		
+		<div style="clear: right;"></div>
+		
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-ng-click="cancel()">Close</button>
+	</div>
+	</div><!-- /.modal-content -->
+</div>

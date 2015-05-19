@@ -1,0 +1,49 @@
+.frame {
+	height: 100px;
+	line-height: 100px;
+	overflow: hidden;
+}
+.frame ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-size: 30px;
+}
+.frame ul li {
+	float: left;
+	width: 100px;
+	height: 100%;
+	margin: 0 2px 0 0;
+	padding: 0;
+	background: #333;
+	color: #ddd;
+	text-align: center;
+	cursor: pointer;
+}
+.frame ul li.active {
+	
+}
+.scrollbar {
+	margin: 15px 0 0 60px;
+	height: 4px;
+	background: #ccc;
+	line-height: 0;
+	width: 60%;
+}
+.scrollbar:hover {
+	cursor:pointer;cursor:hand
+}
+.scrollbar .handle {
+	width: 100px;
+	height: 100%;
+	background: #292a33;
+	cursor: pointer;
+}
+.scrollbar .handle .mousearea {
+	position: absolute;
+	top: -9px;
+	left: 0;
+	width: 100%;
+	height: 20px;
+}

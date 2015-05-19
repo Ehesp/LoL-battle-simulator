@@ -1,0 +1,60 @@
+@import url('slider.css');
+
+/* CSS Arrow
+*************/
+
+.arrow_box {
+	position: relative;
+	background: transparent;
+	top: -1px;
+}
+.arrow_box:after, .arrow_box:before {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(0, 0, 0, 0);
+	border-top-color: #f4f4f4;
+	border-width: 30px;
+	left: 50%;
+	margin-left: -30px;
+}
+.arrow_box:before {
+	border-color: rgba(228, 228, 228, 0);
+	border-top-color: #cccccc;
+	border-width: 31px;
+	left: 50%;
+	margin-left: -31px;
+}
+
+/* List hover effect
+********************/
+.bottom_left { background: rgba(23, 145, 231, 0.8); }
+.top_right { background: rgba(33, 4, 120, 0.8); }
+.hover_block {
+    position: relative;
+    overflow: hidden;
+}
+.hover_block img { 
+	width: 100px;
+	height: 100px;
+}
+.block_sides .bottom_left, .block_sides .top_right {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    transition: all 200ms linear; 
+    -webkit-transition: all 200ms linear;  
+    -moz-transition: all 200ms linear;
+}
+
+.block_sides .bottom_left { left: -100%; bottom: -100%; transform: rotate(45deg); -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); }
+.block_sides .top_right { right: -100%; top: -100%; transform: rotate(45deg); -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); }
+.block_sides:hover .bottom_left { left: -50%; bottom: -50%; }
+.block_sides:hover .top_right { right: -50%; top: -50%; }

@@ -1,0 +1,1 @@
+<i data-ng-repeat="i in [ 1, getMaxLevel() ] | range" data-ng-class="{'icon-circle': getLevel() >= i, 'icon-circle-blank': getLevel() < i, 'icon-disabled': i > maxLevelAvailable() && getLevel() < i, 'icon-invalid': i > maxLevelAvailable() && getLevel() >= i }" data-ng-click="setLevel( i )" data-ng-right-click="setLevel( i - 1 )"></i>

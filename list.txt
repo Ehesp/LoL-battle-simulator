@@ -1,0 +1,22 @@
+A image representing each champion as on here http://lethal-zone.eu/lolbattlesim/img/portraits/2.jpg
+A health, mana and channel bar.
+A place for 6 items.
+A queue bar.
+Five images representing all four abilities and passive as on http://lethal-zone.eu/lolbattlesim/img/spells/2-1.png
+An autoattack animation consisting of wind-up, the shot and wind-down.
+As many stats as possible.
+A settings or menu button.
+A list of champions to select from.
+A single button starting the simulation, ending it and resetting it.
+An aftermath section with all the stats of the simulation and buttons to display graphs.
+
+
+
+
+
+
+
+
+
+
+http://3.bp.blogspot.com/-8Szz2QlMC3A/UCVCtcfLfOI/AAAAAAAADSc/b9Kp4qQZHZs/s1600/HUDAtlas2+copy.jpg

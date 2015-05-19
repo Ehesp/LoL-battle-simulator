@@ -1,0 +1,199 @@
+/* General Declarations
+************************/
+@import url('misc.css');
+@import url('sly.css');
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+
+html, body { height: 100%; }
+body { background: #f4f4f4;}
+body, h1, h2, h3, h4, h5, h6, h7 { font-family: 'Open Sans', sans-serif; }
+#wrap { min-height: 100%; }
+.block { display: block; }
+.displayfloat { float: left; display: inline; }
+.displayfloatright { float: right; display: inline; }
+.third { width: 350px; }
+.bcenter { margin: 0 auto; }
+.tcenter { text-align: center; }
+.tleft { text-align: left; }
+.tright { text-align: right; }
+.full-width { width: 1050px; }
+.progress-bar-difficulty { background-color: #411a52 }
+
+/* Header / Logo Area
+**********************/
+
+header {
+	width: 100%;
+	height: 231px;
+	border-top: 6px solid #000;
+	background: url('../img/header-1.jpg') center no-repeat #343b4a;
+}
+#header-content {
+	width: 900px;
+	height: 200px;
+	margin: 20px auto 0 auto;
+}
+img#logo { margin: 0 auto; }
+#steps {
+	margin-top: 40px;
+	text-shadow: 2px 2px #000;
+}
+.step {
+	width: 300px;
+	float: left;
+	display: inline;
+	font-size: 40px;
+	color: #ffffff;
+}
+i.step-icons {
+	display: inline-block;
+	line-height: 15px;
+}
+.step span { font-size: 23px; }
+
+/* Main Battle Sim Area
+************************/
+	
+	/* Champion Select
+	*******************/
+	section#champion-select {
+		padding-top: 20px;
+		border-top: 4px solid #e5e5e5;
+	}
+	.custom-border { /* CSS Arrow within /css/misc.css */
+		padding-bottom: 20px;
+		border-bottom: 1px solid #cccccc;
+	}
+	#search {
+		width: 100%;
+		height: 50px;
+	}
+	
+	/* Battle Area
+	***************/
+	section#battle-area { margin-top: 10px; }
+	
+	
+		/* Champion Area
+		*****************/
+		section h2 { margin: 0; }
+		
+		#blue-champion .champion-statistics, #purple-champion .champion-statistics { 	padding: 0 10px 0 10px; }
+		#blue-champion > h2 {
+			text-shadow: 0px 0px 1px #0066ff;
+			filter: dropshadow(color=#0066ff, offx=0, offy=0);
+		}
+		#blue-champion .champion-level .slider { margin-left: 10px; }
+		#purple-champion > h2 {
+			text-shadow: 0px 0px 1px #8400ff;
+			filter: dropshadow(color=#8400ff, offx=0, offy=0);
+		}
+		#purple-champion .champion-level .slider { margin-right: 10px; }
+		#purple-champion  .progress-bar { float: right; }
+		#purple-champion .progress.active .progress-bar {
+		-webkit-animation-direction: reverse;
+		-moz-animation-direction: reverse;
+		-ms-animation-direction: reverse;
+		-o-animation-direction: reverse;
+		animation-direction: reverse;
+		}
+
+		.champion-area { width: 300px; }
+		
+		.champion-level { margin-top: 8px; }
+		input.champion-level { width: 270px; }
+			
+		.champion-stats { width: inherit; margin-top: 6px; }
+		.champion-stats .progress { margin-bottom: 5px; background-color: #dfdfdf; }
+		.champion-stats .champion-avatar img{
+			width: 100px;
+			height: 100px;
+		}
+		.champion-stats .champion-statistics { width: 200px; }
+	
+		.champion-skills {
+			margin-top: 10px;
+			height: 80px;
+		}
+		#blue-champion .champion-skills .skill {
+			width: 50px;
+			margin: 0 6px 0 2px;
+		}
+		#purple-champion .champion-skills .skill {
+			width: 50px;
+			margin: 0 2px 0 6px;
+		}
+		.champion-skills  img{
+			margin: 10px 2px 0 2px;
+			position: absolute;
+			z-index: -1;	
+		}
+		.champion-skills .skill-passive img {
+			width: 35px;
+			height: 35px;
+			position: relative;
+			top: 10px;
+			left: 10px;
+		}
+		.champion-skills img:hover { cursor:pointer; cursor:hand; }
+		.champion-skills  button {
+			width: 26px;
+			height: 26px;
+			position: relative;
+			z-index: 1;
+			top: 47px;
+			left: 14px;
+		}
+		.champion-skills .skill-passive button {
+			top: 3px;
+			left: 17px;
+		}
+		.champion-skills i {
+			position: relative;
+			top: -4px;
+			left: -6px;
+		}
+		.champion-skills .ability-key {
+			width: 50px;
+			height: 8px;
+			text-align: center;
+		}
+		
+		.champion-build { margin-top: 15px; }
+		.champion-build .champion-items { 
+			width: 220px;
+			height: 155px;
+		}
+		.champion-build .build-options {
+			width: 60px;
+			height: 155px;
+			margin-left: 12px;
+			padding-top: 28px;
+			line-height: 40px;
+		}
+		.champion-build .build-options button.refresh { width: 41px; }
+	
+		/* Battle Log Area
+		******************/
+		.battlelog { 
+			width: 450px;
+			margin-top: 39px;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		.battlelog-panel { height: 420px; }
+		.battle-log-stats { width: 100%; font-size: 11px; }
+	
+
+/* Footer
+************************/
+.footer {
+  position: relative;
+  margin-top: -46px; /* negative value of footer height */
+  height: 46px;
+  clear:both;
+  text-align: center;
+  padding-top:8px;
+  background: #3b3d49;
+  color: #ffffff;
+  border-top: 6px solid #e5e5e5;
+}

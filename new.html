@@ -1,0 +1,164 @@
+<!doctype html>
+<html ng-app="simulator">
+
+	<head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		
+		<title>LoL Battle Simulator</title>
+		
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js" ></script>
+		<script type="text/javascript" src="http://code.angularjs.org/1.2.0-rc.2/angular-animate.min.js"></script>
+		<script type="text/javascript" src="js/interval.js" ></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi" ></script>
+		<script type="text/javascript">
+			
+			google.load( 'visualization', '1', { packages: [ 'corechart' ] } );
+			
+		</script>
+		
+		<script type="text/javascript" src="js/main.js" ></script>
+		<script type="text/javascript" src="js/nav.js" ></script>
+		<script type="text/javascript" src="js/misc.js" ></script>
+		
+		<script type="text/javascript" src="js/champion.class.js" ></script>
+		<script type="text/javascript" src="js/buff.class.js" ></script>
+		<script type="text/javascript" src="js/statistics.class.js" ></script>
+		<script type="text/javascript" src="js/triggerHandler.class.js" ></script>
+		<script type="text/javascript" src="js/projectile.class.js" ></script>
+		
+		<script type="text/javascript" src="js/champions/ryze.js" ></script>
+		
+		<script type="text/javascript" src="js/controllers.js" ></script>
+		<script type="text/javascript" src="js/services.js" ></script>
+		
+		<style type="text/css">
+			
+			.animate-repeat.ng-enter,
+			.animate-repeat.ng-leave,
+			.animate-repeat.ng-move {
+
+				-webkit-transition:all linear 0.2s;
+				-moz-transition:all linear 0.2s;
+				-o-transition:all linear 0.2s;
+				transition:all linear 0.2s;
+
+			}
+			 
+			.animate-repeat.ng-enter,
+			.animate-repeat.ng-leave.ng-leave-active {
+				
+				opacity:0;
+				
+			}
+			
+			.animate-repeat.ng-enter.ng-enter-active,
+			.animate-repeat.ng-leave {
+				
+				opacity:1;
+				
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body style="color: lightgray;">
+		
+		<div class="logo">
+			<img src="img/logo2.png" />
+		</div>
+		
+		<div ng-controller="settingsCtrl" ng-cloak>
+			
+			FPS: <input type="text" ng-model="settings.FPS" size="3" /><br/>
+			Time scale: <input type="text" ng-model="settings.timeScale" size="3" />
+			
+		</div>
+		<br/>
+		<div ng-controller="timerCtrl" ng-cloak>
+			
+			Time: {{ timer.time / 1000 | number:1 }}
+			
+			<br/>
+			
+			<button ng-click="toggleTimer()" style="width: 30px;" ng-disabled="champions[ 0 ] === false || champions[ 1 ] === false">{{ playSign( timer.running ) }}</button>
+			
+			
+		</div>
+		<br/><br/>
+		
+		<div ng-controller="champCtrl" ng-cloak>
+			
+			<div ng-repeat="champion in champions.sides track by $index">
+				
+				<div ng-show="champion">
+					
+					<b>{{champion.statData.disp_name}}</b> (<input type="number" onblur="this.value = Math.min( this.max, ( Math.max( this.min, parseInt( this.value ) ) ) ); if( isNaN( this.value ) ) this.value = 1;" size="1" ng-model="champion.championLevel" min="1" max="18" integer/>)<br/>
+					Health: {{champion.stats.health|number:0}} (+{{champion.stats.healthRegen|number:1}})<br/>
+					Mana: {{champion.stats.mana|number:0}} (+{{champion.stats.manaRegen|number:1}})<br/>
+					AD: {{champion.stats.AD|number:0}}<br/>
+					AS: {{champion.stats.AS|number:2}}<br/>
+					<br/>
+					<div>
+						
+						Queue: <span ng-repeat="item in champion.queue track by $index">{{ abilitySign( item.index ) }}</span>
+						
+					</div>
+					<br/>
+					<img style="margin-right: 10px;" ng-click="queue( $index, champion );" ng-repeat="ability in champion.abilityData track by $index" ng-src="{{ability.icon}}" />
+					
+				</div>
+				
+				<div ng-hide="champion">No champion picked</div>
+				
+				<br/><br/>
+				
+			</div>
+			
+			<form name="abilityConfigForm" ng-show="abilityConfigFields">
+				
+				<div ng-repeat="field in abilityConfigFields track by $index">
+					
+					<label for="{{ field.name }}">{{ field.label }}:</label>
+					<input type="{{ field.type }}" id="{{ field.name }}" ng-model="field.data" name="{{field.name}}" required>
+					<div ng-show="form['\{\{field.name\}\}'].$error">Invalid value</div>
+					
+				</div>
+				<input type="button" ng-click="addQueue()" value="Add"/>
+				
+			</form>
+			
+		</div>
+		<br/><br/>
+		<div ng-controller="listCtrl" ng-cloak>
+			
+			<div ng-show="championList">
+				
+				<input type="text" placeholder="Filter champion" ng-model="champFilter.name" />
+				
+				<br/><br/>
+				
+				<div class="animate-repeat" ng-repeat="champion in championList | filter:champFilter" style="display: inline-block; text-align: center;">
+					
+					{{champion.name}}<br/>
+					<img ng-src="{{champion.icon}}"/><br/>
+					<a style="color: blue;" ng-click="champions.set( 0, champion.name );">Blue</a> -
+					<a style="color: purple;" ng-click="champions.set( 1, champion.name );">Purple</a>
+					
+					
+				</div>
+				
+			</div>
+			
+			<div ng-hide="championList">Loading champions...</div>
+			
+		</div>
+		
+		
+	
+	</body>
+	
+</html>

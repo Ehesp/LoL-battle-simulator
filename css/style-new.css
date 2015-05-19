@@ -1,0 +1,29 @@
+body {
+
+}
+
+.floatleft {
+	float:left;
+	display:inline;
+}
+.clear {
+	clear:both;
+}
+.center {
+	margin: 0 auto;
+}
+
+#logo {
+	width: 370px;
+	height: 140px;
+}
+#container {
+	width: 1170px;
+}
+	#left, #right {
+		width: 85px;
+		height: 100%;
+	}
+	#middle {
+		width:1000px;
+	}
